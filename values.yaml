@@ -8,7 +8,7 @@ image:
   repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "41adfd7c"
+  tag: "b0242ba9"
   enabled: true
   annotations: {}
   host: "enms.maeil.com"
