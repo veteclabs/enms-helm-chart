@@ -4,6 +4,18 @@
 
 replicaCount: 1
 
+global:
+  volumePath: /Users/kimhyunsoo/workDir/volumes
+persistentVolume:
+  path: /Users/Kimtaejun/helmCharts/volumes   # /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes
+  enabled: true
+  name: enms-volume
+  storageClass: hostpath #manual #local-storage
+  capacity: 30Gi
+  accessModes:
+    - ReadWriteOnce
+  reclaimPolicy: Retain
+  nodeName: docker-desktop
 image:
   repository: nginx
   pullPolicy: IfNotPresent
@@ -43,34 +55,22 @@ mariadb:
       type: pvc
       accessModes:
         - ReadWriteOnce
-      size: 10Gi
       subPath: mariadb
 redis:
   capacity: 3Gi
-  primary:
-    service:
-      type: NodePort
-      nodePorts:
-        mysql: 32721
-    persistence:
-      enabled: true
-      existingClaim: mariadb-pvc
-      storageClass: local-storage
-      type: pvc
-      accessModes:
-        - ReadWriteOnce
-      size: 10Gi
-      subPath: mariadb
-persistentVolume:
-  enabled: true
-  name: enms-volume
-  storageClass: manual #local-storage
-  capacity: 30Gi
-  path: /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes
-  accessModes:
-    - ReadWriteOnce
-  reclaimPolicy: Retain
-  nodeName: docker-desktop
+  service:
+    type: NodePort
+    nodePorts:
+      redis: 32379
+  persistence:
+    enabled: true
+    existingClaim: redis-pvc
+    storageClass: local-storage
+    type: pvc
+    accessModes:
+      - ReadWriteOnce
+    subPath: redis
+
 
 https://charts:
   bitnami:
