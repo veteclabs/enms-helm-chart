@@ -6,11 +6,11 @@ dependencies:
     version: 4.0.1 # 사용하고자 하는 ingress-nginx 차트의 버전을 명시하세요
     repository: https://kubernetes.github.io/ingress-nginx
   - name: mariadb
-    version: 18.12.1
+    version: 16.0.2
     repository: https://charts.bitnami.com/bitnami
-  # - name: redis
-  #   version: 10.5.7
-  #   repository: https://charts.bitnami.com/bitnami
+  - name: redis
+    repository: https://charts.bitnami.com/bitnami
+    version: 17.3.18
 
 # A chart can be either an 'application' or a 'library' chart.
 #

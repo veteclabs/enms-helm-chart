@@ -27,7 +27,6 @@ influxdb:
   targetPort: 8086
   nodePort: 32086
 mariadb:
-
   capacity: 10Gi
   auth:
     rootPassword: "vetec3721!"
@@ -47,7 +46,21 @@ mariadb:
       size: 10Gi
       subPath: mariadb
 redis:
-  capacity: 5Gi
+  capacity: 3Gi
+  primary:
+    service:
+      type: NodePort
+      nodePorts:
+        mysql: 32721
+    persistence:
+      enabled: true
+      existingClaim: mariadb-pvc
+      storageClass: local-storage
+      type: pvc
+      accessModes:
+        - ReadWriteOnce
+      size: 10Gi
+      subPath: mariadb
 persistentVolume:
   enabled: true
   name: enms-volume
