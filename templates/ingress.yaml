@@ -1,14 +1,12 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-metadata:
   annotations: 
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /
   name: mynginx-ingress
 spec:
   rules:
-    - host: enms.maeil.com
     - http:
         paths:
           - path: /
@@ -17,7 +15,7 @@ spec:
               service:
                 name: app-frontend
                 port:
-                  number: 3722
+                  number: {{ .Values.frontend.port }}
           # - path: /api
           #   pathType: Prefix
           #   backend:

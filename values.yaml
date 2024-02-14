@@ -16,7 +16,23 @@ image:
   tls: false
   tlsSecret: ""
 
-
+frontend:
+  imageName: vetec/frontend
+  tag: ""
+  port: 3722
+  targetPort: 3722
+influxdb:
+  ip: 112.216.32.6
+  port: 8086
+  targetPort: 8086
+  nodePort: 32086
+mariadb:
+  auth:
+    rootPassword: "vetec3721!"
+    database: "ems"
+https://charts:
+  bitnami:
+    com/bitnami:
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""

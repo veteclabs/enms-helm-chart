@@ -7,6 +7,6 @@ spec:
     app: frontend
   ports:
   - protocol: TCP
-    port: 3722
-    targetPort: 3722
-  type: NodePort
+    port: {{ .Values.frontend.port }}
+    targetPort: {{ .Values.frontend.targetPort }}
+  type: ClusterIP

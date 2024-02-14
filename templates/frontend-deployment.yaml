@@ -7,7 +7,9 @@ spec:
   selector:
     matchLabels:
       app: frontend
-  replicas: 1
+  replicas: 2
+  strategy:
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -15,7 +17,8 @@ spec:
     spec:
       containers:
       - name: app-frontend
-        image: vetec/frontend
+#        image: vetec/frontend
+        image: "{{ .Values.frontend.imageName }}:{{ .Values.frontend.tag }}"
         ports:
-        - containerPort: 6379
+        - containerPort: {{ .Values.frontend.targetPort }}
 

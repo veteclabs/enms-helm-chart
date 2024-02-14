@@ -18,4 +18,17 @@ spec:
         image: redis
         ports:
         - containerPort: 6379
+        volumeMounts:
+          - name: redis-data
+            mountPath: "/data"
+          - name: redis-config
+            mountPath: "/usr/local/etc/redis/redis.conf"
+      volumes:
+        - name: redis-data
+          hostPath:
+             path: "/Users/kimtaejun/testVolumes/redis/data"
+        - name: redis-config
+          hostPath:
+            path: "/Users/kimtaejun/testVolumes/redis/config"
+
 
