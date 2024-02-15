@@ -57,7 +57,7 @@ mariadb:
         - ReadWriteOnce
       subPath: mariadb
 redis:
-  capacity: 3Gi
+  capacity: 8Gi
   service:
     type: NodePort
     nodePorts:
