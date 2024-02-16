@@ -7,10 +7,10 @@ replicaCount: 1
 global:
   volumePath: /Users/kimhyunsoo/workDir/volumes
 persistentVolume:
-  path: /Users/Kimtaejun/helmCharts/volumes   # /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes
+  path: /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes /Users/Kimtaejun/helmCharts/volumes   # /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes
   enabled: true
   name: enms-volume
-  storageClass: hostpath #manual #local-storage
+  storageClass: manual # hostpath #manual #local-storage
   capacity: 30Gi
   accessModes:
     - ReadWriteOnce

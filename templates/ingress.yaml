@@ -13,7 +13,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: app-frontend
+                name: {{ include "my-app.fullname" . }}-app-frontend-svc
                 port:
                   number: {{ .Values.frontend.port }}
           # - path: /api
