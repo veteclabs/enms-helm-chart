@@ -8,3 +8,4 @@ spec:
   resources:
     requests:
       storage: {{ .Values.mariadb.capacity }}
+  volumeName: mariadb-{{ .Values.persistentVolume.name }}
