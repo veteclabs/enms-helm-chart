@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: {{ include "my-app.fullname" . }}-app-frontend-controller
 spec:
   selector:
     matchLabels:
-      app: frontend
+      app: {{ include "my-app.fullname" . }}-app-frontend
   replicas: 2
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: frontend
+        app: {{ include "my-app.fullname" . }}-app-frontend
     spec:
       containers:
-      - name: app-frontend
+      - name: {{ include "my-app.fullname" . }}-app-frontend-pod
 #        image: vetec/frontend
         image: "{{ .Values.frontend.imageName }}:{{ .Values.frontend.tag }}"
         ports:

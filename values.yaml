@@ -7,7 +7,7 @@ replicaCount: 1
 global:
   volumePath: /Users/kimhyunsoo/workDir/volumes
 persistentVolume:
-  path: /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes  /Users/Kimtaejun/helmCharts/volumes
+  path: /Users/Kimtaejun/helmCharts/volumes   # /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes
   enabled: true
   name: enms-volume
   storageClass: hostpath #manual #local-storage
@@ -57,20 +57,28 @@ mariadb:
         - ReadWriteOnce
       subPath: mariadb
 redis:
+  auth:
+    enabled: true
+    password: "vetec3721!"
   capacity: 8Gi
+  architecture: standalone
   service:
     type: NodePort
     nodePorts:
       redis: 32379
-  persistence:
-    enabled: true
-    existingClaim: redis-pvc
-    storageClass: local-storage
-    type: pvc
-    accessModes:
-      - ReadWriteOnce
-    subPath: redis
-
+  master:
+    persistence:
+      enabled: true
+      existingClaim: redis-pvc
+      storageClass: local-storage
+      type: pvc
+      accessModes:
+        - ReadWriteOnce
+      subPath: redis
+    service:
+      type: NodePort
+      nodePorts:
+        redis: 32379
 
 https://charts:
   bitnami:
