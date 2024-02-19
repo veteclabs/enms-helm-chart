@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "my-app.fullname" . }}-app-timeseries-api-controller
+  name: {{ .Release.Name }}-app-timeseries-api-controller
 spec:
   replicas: {{ .Values.timeseriesApi.replicas }}
   selector:
     matchLabels:
-      app: {{ include "my-app.fullname" . }}-app-timeseries-api
+      app: {{ .Release.Name }}-app-timeseries-api
   template:
     metadata:
       labels:
-        app: {{ include "my-app.fullname" . }}-app-timeseries-api
+        app: {{ .Release.Name }}-app-timeseries-api
     spec:
       containers:
-        - name: {{ include "my-app.fullname" . }}-app-timeseries-api-pod
+        - name: {{ .Release.Name }}-app-timeseries-api-pod
           image: "{{ .Values.timeseriesApi.imageName }}:{{ .Values.timeseriesApi.tag }}"
           resources:
             requests:

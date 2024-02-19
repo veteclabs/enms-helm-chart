@@ -5,16 +5,17 @@
 replicaCount: 1
 
 scada:
-  ip: 7.83.93.65
+  ip: 192.168.65.3
   mqtt:
     port: 1883
-    targetPort: 1883
+    targetPort: 1885
+    nodePort: 31885
     username: vetec
     password: vetec
     topic: "data"
 
 persistentVolume:
-  path: /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes /Users/Kimtaejun/helmCharts/volumes   # /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes
+  path: /Users/Kimtaejun/helmCharts/volumes #/run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes /Users/Kimtaejun/helmCharts/volumes   # /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes
   enabled: true
   name: enms-volume
   storageClass: manual # hostpath #manual #local-storage
@@ -54,7 +55,7 @@ timeseriesApi:
   targetPort: 8089
   replicas: 1
 timeseriesSaver:
-  enabled: false
+  enabled: true
   tag: "0e0867f4"
   imageName: vetec/enms-timeseries-saver
   port: 8084

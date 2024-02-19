@@ -6,12 +6,12 @@ metadata:
 data:
   default.conf: |
     upstream frontend {
-      server {{ include "my-app.fullname" . }}-app-frontend-service:{{ .Values.frontend.port }};
+      server {{ .Release.Name }}-app-frontend-service:{{ .Values.frontend.port }};
     }
 
     server {
       listen 80;
-      server_name {{ include "my-app.fullname" . }}-app-frontend-service;
+      server_name {{ .Release.Name }}-app-frontend-service;
       location / {
           proxy_pass http://frontend;
       }

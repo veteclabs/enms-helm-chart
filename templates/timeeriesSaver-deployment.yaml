@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "my-app.fullname" . }}-app-timeseries-saver-controller
+  name: {{ .Release.Name }}-app-timeseries-saver-controller
 spec:
   replicas: {{ .Values.timeseriesApi.replicas }}
   selector:
     matchLabels:
-      app: {{ include "my-app.fullname" . }}-app-timeseries-saver
+      app: {{ .Release.Name }}-app-timeseries-saver
   template:
     metadata:
       labels:
-        app: {{ include "my-app.fullname" . }}-app-timeseries-saver
+        app: {{ .Release.Name }}-app-timeseries-saver
     spec:
       containers:
-        - name: {{ include "my-app.fullname" . }}-app-timeseries-saver-pod
+        - name: {{ .Release.Name }}-app-timeseries-saver-pod
           image: "{{ .Values.timeseriesSaver.imageName }}:{{ .Values.timeseriesApi.tag }}"
           resources:
             requests:
@@ -37,7 +37,7 @@ spec:
             - name: INFLUXDB_PASSWORD
               value: "{{ .Values.influxdb.password }}"
             - name: SCADA_IP
-              value: "{{ (printf "%s-mqtt-service" (include "my-app.fullname" .)) }}"
+              value: "{{ (printf "%s-mqtt-service" ( .Release.Name )) }}"
             - name: MQTT_PORT
               value: "{{ .Values.scada.mqtt.port }}"
             - name: MQTT_USERNAME
@@ -49,7 +49,7 @@ spec:
             - name: MQTT_CLIENTID
               value: "enms-client-wejij342089j03" # {{ randAlphaNum 10 | quote }}"
             - name: REDIS_IP
-              value: "{{ ternary (printf "%s-redis-master" (include "my-app.fullname" .)) .Values.redis.ip  .Values.redis.enabled }}"
+              value: "{{ ternary (printf "%s-redis-master" (.Release.Name)) .Values.redis.ip  .Values.redis.enabled }}"
             - name: REDIS_PORT
               value: "{{ ternary 6379 (printf "%s" (.Values.redis.port))  .Values.redis.enabled }}"
             - name: REDIS_PASSWORD
