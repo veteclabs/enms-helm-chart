@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: {{ include "my-app.fullname" . }}-app-timeseries-saver-pod
-          image: "{{ .Values.timeseriesApi.imageName }}:{{ .Values.timeseriesApi.tag }}"
+          image: "{{ .Values.timeseriesSaver.imageName }}:{{ .Values.timeseriesApi.tag }}"
           resources:
             requests:
               memory: "2Gi"
@@ -46,16 +46,8 @@ spec:
             - name: MQTT_TOPIC
               value: "{{ .Values.scada.mqtt.topic }}"
             - name: REDIS_IP
-              value: {{ if .Values.redis.enabled }}
-                        "{{ include "my-app.fullname" }}-vetec-enms-redis-master"
-                    {{ else }}
-                        "{{ .Values.redis.ip }}"
-                    {{ end }}
+              value: "{{ ternary (printf "%s-redis-master" (include "my-app.fullname" .)) .Values.redis.ip  .Values.redis.enabled }}"
             - name: REDIS_PORT
-              value:  {{ if .Values.timeseriesSaver.enabled }}
-                          "{{ .Values.redis.port }}"
-                      {{ else }}
-                          "6379"
-                      {{ end }}
+              value: "{{ ternary 6379 (printf "%s" (.Values.redis.port))  .Values.redis.enabled }}"
             - name: REDIS_PASSWORD
               value: "{{ .Values.redis.auth.password }}"

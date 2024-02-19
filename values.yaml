@@ -7,7 +7,7 @@ replicaCount: 1
 scada:
   ip: 127.0.0.1
   mqtt:
-    port: 1883
+    port: 1885
     username: vetec
     password: vetec
     topic: "data"
@@ -64,7 +64,7 @@ influxdb:
   targetPort: 8086
   nodePort: 32086
   bucket: "history"
-  org: "primary"
+  org: "enms"
   username: "vetec"
   password: "vetecP@ssw0rd3721@!#"
   token: "vetec-enms-app-timeseries-api-controller-586b4685cf-g5x5n"
@@ -88,9 +88,9 @@ mariadb:
         - ReadWriteOnce
       subPath: mariadb
 redis:
-  ip: ""
+  ip: "127.0.0.1"
   enabled: true
-  port: 6378
+  port: "6378"
   auth:
     enabled: true
     password: "vetec3721!"
