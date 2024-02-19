@@ -15,7 +15,8 @@ scada:
     topic: "data"
 
 persistentVolume:
-  path: /Users/Kimtaejun/helmCharts/volumes #/run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes /Users/Kimtaejun/helmCharts/volumes   # /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes
+#  path: /Users/Kimtaejun/helmCharts/volumes #
+  path: /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes /Users/Kimtaejun/helmCharts/volumes   # /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes
   enabled: true
   name: enms-volume
   storageClass: manual # hostpath #manual #local-storage
