@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: {{ include "my-app.fullname" . }}-mqtt-service
+subsets:
+  - addresses:
+      - ip: "{{ .Values.scada.ip }}"
+    ports:
+      - port: {{ .Values.scada.mqtt.port }}

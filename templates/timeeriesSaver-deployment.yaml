@@ -1,3 +1,4 @@
+{{ if .Values.timeseriesSaver.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -36,7 +37,7 @@ spec:
             - name: INFLUXDB_PASSWORD
               value: "{{ .Values.influxdb.password }}"
             - name: SCADA_IP
-              value: "{{ .Values.scada.ip }}"
+              value: "{{ (printf "%s-mqtt-service" (include "my-app.fullname" .)) }}"
             - name: MQTT_PORT
               value: "{{ .Values.scada.mqtt.port }}"
             - name: MQTT_USERNAME
@@ -45,9 +46,12 @@ spec:
               value: "{{ .Values.scada.mqtt.password }}"
             - name: MQTT_TOPIC
               value: "{{ .Values.scada.mqtt.topic }}"
+            - name: MQTT_CLIENTID
+              value: "enms-client-wejij342089j03" # {{ randAlphaNum 10 | quote }}"
             - name: REDIS_IP
               value: "{{ ternary (printf "%s-redis-master" (include "my-app.fullname" .)) .Values.redis.ip  .Values.redis.enabled }}"
             - name: REDIS_PORT
               value: "{{ ternary 6379 (printf "%s" (.Values.redis.port))  .Values.redis.enabled }}"
             - name: REDIS_PASSWORD
               value: "{{ .Values.redis.auth.password }}"
+{{- end}}

@@ -1,3 +1,4 @@
+{{- if .Values.timeseriesSaver.enabled -}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -10,3 +11,4 @@ spec:
     port: {{ .Values.timeseriesSaver.port }}
     targetPort: {{ .Values.timeseriesSaver.targetPort }}
   type: ClusterIP
+{{- end}}
