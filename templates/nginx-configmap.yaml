@@ -4,7 +4,7 @@ kind: ConfigMap
 metadata:
   name: nginx-config
 data:
-  nginx.conf: |
+  default.conf: |
     upstream frontend {
       server {{ include "my-app.fullname" . }}-app-frontend-service:{{ .Values.frontend.port }};
     }

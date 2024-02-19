@@ -15,7 +15,7 @@ persistentVolume:
   reclaimPolicy: Retain
   nodeName: docker-desktop
 ingressNginx:
-  enabled: true
+  enabled: false
   type: LoadBalancer
   port: 85
   serverName: enms.com
@@ -35,14 +35,12 @@ image:
 frontend:
   imageName: vetec/enms-frontend
   tag: "15f719ba"
-  tag: "b0242ba9"
   port: 3722
   targetPort: 3722
 timeseriesApi:
   inamgeName: vetec/timeseries-api
   tag: "15f719ba"
   imageName: vetec/enms-timeseries-api
-  tag: "3fd40709"
   port: 8089
   targetPort: 8089
   replicas: 1

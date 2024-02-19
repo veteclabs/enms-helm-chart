@@ -1,12 +1,9 @@
 dependencies:
-- name: ingress-nginx
-  repository: https://kubernetes.github.io/ingress-nginx
-  version: 4.0.1
 - name: mariadb
   repository: https://charts.bitnami.com/bitnami
   version: 16.0.2
 - name: redis
   repository: https://charts.bitnami.com/bitnami
   version: 17.3.18
-digest: sha256:0d1ca06f9f62a7973ed5c71432258e5c2ae506bdedec0f3b157d34a6cbefb387
-generated: "2024-02-14T17:58:03.5590304+09:00"
+digest: sha256:84264807527304bfe7a59c3195750e64fa3593af70ac446f722e03064ee06d6e
+generated: "2024-02-19T11:36:42.2286078+09:00"
