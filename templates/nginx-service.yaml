@@ -9,5 +9,5 @@ spec:
     - port: {{ .Values.ingressNginx.port }}
       targetPort: 80
   selector:
-    app: nginx
+    app: {{ include "my-app.fullname" . }}-nginx
 {{- end}}
