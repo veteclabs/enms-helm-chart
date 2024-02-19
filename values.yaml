@@ -24,7 +24,7 @@ image:
   repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "3fd40709"
+  tag: "15f719ba"
   enabled: true
 #  annotations: {}
   host: "enms.maeil.com"
@@ -34,10 +34,13 @@ image:
 
 frontend:
   imageName: vetec/enms-frontend
+  tag: "15f719ba"
   tag: "b0242ba9"
   port: 3722
   targetPort: 3722
 timeseriesApi:
+  inamgeName: vetec/timeseries-api
+  tag: "15f719ba"
   imageName: vetec/enms-timeseries-api
   tag: "3fd40709"
   port: 8089
