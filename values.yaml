@@ -20,7 +20,7 @@ image:
   repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "b0242ba9"
+  tag: "3fd40709"
   enabled: true
   annotations: {}
   host: "enms.maeil.com"
@@ -29,21 +29,25 @@ image:
   tlsSecret: ""
 
 frontend:
-  imageName: vetec/frontend
-  tag: "b0242ba9"
+  imageName: frontend
+  tag: "3fd40709"
   port: 3722
   targetPort: 3722
 timeseriesApi:
   inamgeName: vetec/timeseries-api
-  tag: "b0242ba9"
+  tag: "3fd40709"
   port: 8089
   targetPort: 8089
   replicas: 3
 influxdb:
   ip: 112.216.32.6
-  port: 8089
-  targetPort: 8089
-  nodePort: 32089
+  port: 8086
+  targetPort: 8086
+  nodePort: 32086
+  bucket: "history"
+  org: "primary"
+  token: "admintoken123"
+
 mariadb:
   capacity: 10Gi
   auth:

@@ -25,33 +25,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "my-backend-app.fullname" . }}-app-timeseries-api-controller
+  name: {{ include "my-app.fullname" . }}-app-timeseries-api-controller
 spec:
   replicas: {{ .Values.timeseriesApi.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "my-backend-app.fullname" . }}-app-timeseries-api
+      app: {{ include "my-app.fullname" . }}-app-timeseries-api
   template:
     metadata:
       labels:
-        app: {{ include "my-backend-app.fullname" . }}-app-timeseries-api
+        app: {{ include "my-app.fullname" . }}-app-timeseries-api
     spec:
       containers:
-        - name: backend
-          image: "{{ .Values.timeseriesApi.imageName }}:{{ .Values.timeseriesApi.tag }}"
+        - name: {{ include "my-app.fullname" . }}-app-timeseries-api-pod
+          image: "vetec/enms-timeseries-api:{{ .Values.timeseriesApi.tag }}"
           resources:
+            requests:
+              memory: "2Gi"
             limits:
-              memory: {{ .Values.resources.limits.memory }}
+              memory: "3Gi"
           env:
-            - name: TZ
-              value: "{{ .Values.env.TZ }}"
             - name: INFLUXDB_IP
-              value: "{{ .Values.scada.ip }}"
+              value: influxdb
             - name: INFLUXDB_PORT
-              value: "{{ .Values.scada.projectName }}"
+              value: "{{ .Values.influxdb.port }}"
             - name: INFLUXDB_BUCKET
-              value: "{{ .Values.scada.nodeName }}"
+              value: "{{ .Values.influxdb.bucket }}"
             - name: INFLUXDB_ORG
-              value: "{{ .Values.database.hostname }}"
+              value: "{{ .Values.influxdb.org }}"
             - name: INFLUXDB_TOKEN
-              value: "{{ .Values.database.port }}"
+              value: "{{ .Values.influxdb.token }}"

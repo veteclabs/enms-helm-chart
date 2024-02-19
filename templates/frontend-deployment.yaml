@@ -14,11 +14,12 @@ spec:
     metadata:
       labels:
         app: {{ include "my-app.fullname" . }}-app-frontend
-    spec:
+    spec:  
       containers:
       - name: {{ include "my-app.fullname" . }}-app-frontend-pod
 #        image: vetec/frontend
-        image: "{{ .Values.frontend.imageName }}:{{ .Values.frontend.tag }}"
+        image: "vetec/enms-{{ .Values.frontend.imageName }}:{{ .Values.frontend.tag }}"
         ports:
         - containerPort: {{ .Values.frontend.targetPort }}
 
+ 
