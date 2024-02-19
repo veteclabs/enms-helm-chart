@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "my-app.fullname" . }}-app-frontend-svc
+  name: {{ include "my-app.fullname" . }}-app-frontend-service
 spec:
   selector:
     app: {{ include "my-app.fullname" . }}-app-frontend

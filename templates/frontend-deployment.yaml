@@ -18,7 +18,7 @@ spec:
       containers:
       - name: {{ include "my-app.fullname" . }}-app-frontend-pod
 #        image: vetec/frontend
-        image: "vetec/enms-{{ .Values.frontend.imageName }}:{{ .Values.frontend.tag }}"
+        image: "{{ .Values.frontend.imageName }}:{{ .Values.frontend.tag }}"
         ports:
         - containerPort: {{ .Values.frontend.targetPort }}
 

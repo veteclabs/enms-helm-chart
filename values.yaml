@@ -4,8 +4,6 @@
 
 replicaCount: 1
 
-global:
-  volumePath: /Users/kimhyunsoo/workDir/volumes
 persistentVolume:
   path: /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes /Users/Kimtaejun/helmCharts/volumes   # /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes
   enabled: true
@@ -17,7 +15,7 @@ persistentVolume:
   reclaimPolicy: Retain
   nodeName: docker-desktop
 ingressNginx:
-  enabled: false
+  enabled: true
   type: LoadBalancer
   port: 85
   serverName: enms.com
@@ -35,16 +33,16 @@ image:
   tlsSecret: ""
 
 frontend:
-  imageName: vetec/frontend
+  imageName: vetec/enms-frontend
   tag: "b0242ba9"
   port: 3722
   targetPort: 3722
 timeseriesApi:
-  inamgeName: vetec/timeseries-api
+  imageName: vetec/enms-timeseries-api
   tag: "3fd40709"
   port: 8089
   targetPort: 8089
-  replicas: 3
+  replicas: 1
 influxdb:
   ip: 112.216.32.6
   port: 8086
@@ -52,7 +50,9 @@ influxdb:
   nodePort: 32086
   bucket: "history"
   org: "primary"
-  token: "admintoken123"
+  username: "vetec"
+  password: "vetecP@ssw0rd3721@!#"
+  token: "vetec-enms-app-timeseries-api-controller-586b4685cf-g5x5n"
 
 mariadb:
   capacity: 10Gi

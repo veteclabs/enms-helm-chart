@@ -6,12 +6,12 @@ metadata:
 data:
   nginx.conf: |
     upstream frontend {
-      server {{ include "my-app.fullname" . }}-app-frontend-svc:{{ .Values.frontend.port }};
+      server {{ include "my-app.fullname" . }}-app-frontend-service:{{ .Values.frontend.port }};
     }
 
     server {
       listen 80;
-      server_name {{ include "my-app.fullname" . }}-app-frontend-svc;
+      server_name {{ include "my-app.fullname" . }}-app-frontend-service;
       location / {
           proxy_pass http://frontend;
       }
