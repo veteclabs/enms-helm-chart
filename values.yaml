@@ -4,6 +4,13 @@
 
 replicaCount: 1
 
+scada:
+  ip: 127.0.0.1
+  mqtt:
+    port: 1883
+    username: vetec
+    password: vetec
+    topic: "data"
 persistentVolume:
   path: /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes /Users/Kimtaejun/helmCharts/volumes   # /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes
   enabled: true
@@ -44,6 +51,13 @@ timeseriesApi:
   port: 8089
   targetPort: 8089
   replicas: 1
+timeseriesSaver:
+  enabled: true
+  tag: "b9128f98"
+  imageName: vetec/enms-timeseries-saver
+  port: 8084
+  targetPort: 8084
+  replicas: 1
 influxdb:
   ip: 112.216.32.6
   port: 8086
@@ -74,6 +88,9 @@ mariadb:
         - ReadWriteOnce
       subPath: mariadb
 redis:
+  ip: ""
+  enabled: true
+  port: 6378
   auth:
     enabled: true
     password: "vetec3721!"

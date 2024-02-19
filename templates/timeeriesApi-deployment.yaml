@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "my-app.fullname" . }}-app-timeseries-api-controller
 spec:
-  replicas: {{ .Values.timeseriesApi.replicas }}
+  replicas: {{ .Values.timeseriesSaver.replicas }}
   selector:
     matchLabels:
       app: {{ include "my-app.fullname" . }}-app-timeseries-api
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: {{ include "my-app.fullname" . }}-app-timeseries-api-pod
-          image: "{{ .Values.timeseriesApi.imageName }}:{{ .Values.timeseriesApi.tag }}"
+          image: "{{ .Values.timeseriesSaver.imageName }}:{{ .Values.timeseriesApi.tag }}"
           resources:
             requests:
               memory: "2Gi"
