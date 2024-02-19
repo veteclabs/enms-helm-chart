@@ -1,0 +1,13 @@
+{{- if not .Values.ingressNginx.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "my-app.fullname" . }}-nginx-svc
+spec:
+  type: {{ .Values.ingressNginx.type }}
+  ports:
+    - port: {{ .Values.ingressNginx.port }}
+      targetPort: 80
+  selector:
+    app: nginx
+{{- end}}

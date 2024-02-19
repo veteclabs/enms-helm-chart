@@ -16,20 +16,26 @@ persistentVolume:
     - ReadWriteOnce
   reclaimPolicy: Retain
   nodeName: docker-desktop
+ingressNginx:
+  enabled: false
+  type: LoadBalancer
+  port: 85
+  serverName: enms.com
+
 image:
   repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "3fd40709"
   enabled: true
-  annotations: {}
+#  annotations: {}
   host: "enms.maeil.com"
   path: "/"
   tls: false
   tlsSecret: ""
 
 frontend:
-  imageName: vetec/frontend
+  imageName: vetec/enms-frontend
   tag: "3fd40709"
   port: 3722
   targetPort: 3722
