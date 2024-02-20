@@ -1,0 +1,11 @@
+{{ if not .Values.influxdb2.enabled }}
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: influxdb2-{{ .Release.Namespace }}-{{ .Release.Name }}
+subsets:
+  - addresses:
+      - ip: "{{ .Values.influxdb2.ip }}"
+    ports:
+      - port: {{ .Values.influxdb2.service.targetPort }}
+{{ end }}

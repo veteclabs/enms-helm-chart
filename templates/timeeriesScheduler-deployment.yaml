@@ -1,17 +1,17 @@
-{{ if .Values.timeseriesSaver.enabled }}
+{{ if .Values.timeseriesScheduler.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-saver-controller
+  name: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-scheduler-controller
 spec:
   replicas: {{ .Values.timeseriesApi.replicas }}
   selector:
     matchLabels:
-      app: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-saver
+      app: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-scheduler
   template:
     metadata:
       labels:
-        app: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-saver
+        app: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-scheduler
     spec:
       {{ if .Values.redis.enabled }}
       initContainers:
@@ -20,8 +20,8 @@ spec:
           command: [ 'sh', '-c', 'until kubectl get pods -l app.kubernetes.io/instance={{.Release.Name}} -l app.kubernetes.io/name=redis -n {{.Release.Namespace}} | grep Running; do echo waiting for mariadb; sleep 10; done;' ]
       {{- end }}
       containers:
-        - name: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-saver-pod
-          image: "{{ .Values.timeseriesSaver.imageName }}:{{ .Values.timeseriesApi.tag }}"
+        - name: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-scheduler-pod
+          image: "{{ .Values.timeseriesScheduler.imageName }}:{{ .Values.timeseriesApi.tag }}"
           resources:
             requests:
               memory: "2Gi"

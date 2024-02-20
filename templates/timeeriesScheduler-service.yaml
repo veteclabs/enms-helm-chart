@@ -1,11 +1,11 @@
-{{- if .Values.timeseriesSaver.enabled -}}
+{{- if .Values.timeseriesScheduler.enabled -}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeeseries-saver-service
+  name: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeeseries-scheduler-service
 spec:
   selector:
-    app: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-saver
+    app: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-scheduler
   ports:
   - protocol: TCP
     port: {{ .Values.timeseriesSaver.port }}

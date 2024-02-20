@@ -1,0 +1,22 @@
+{{ if .Values.persistentVolume.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: init-pv-directory
+spec:
+  template:
+    spec:
+      containers:
+        - name: init-pv
+          image: busybox
+          command: ["mkdir", "-p", "/mnt/data/{{.Release.Namespace}}"]
+          volumeMounts:
+            - name: pv-volume
+              mountPath: "/mnt/data"
+      restartPolicy: OnFailure
+      volumes:
+        - name: pv-volume
+          persistentVolumeClaim:
+            claimName: job-pvc
+
+{{- end }}

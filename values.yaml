@@ -26,7 +26,9 @@ persistentVolume:
   reclaimPolicy: Retain
   nodeName: docker-desktop
 ingressNginx:
-  enabled: false
+  controller:
+    name: nginx
+  enabled: true
   type: LoadBalancer
   port: 86
   serverName: enms.com
@@ -62,17 +64,35 @@ timeseriesSaver:
   port: 8084
   targetPort: 8084
   replicas: 1
-influxdb:
-  ip: 112.216.32.6
-  port: 8086
-  targetPort: 8086
-  nodePort: 32086
-  bucket: "history"
-  org: "enms"
-  username: "vetec"
-  password: "vetecP@ssw0rd3721@!#"
-  token: "vetec-enms-app-timeseries-api-controller-586b4685cf-g5x5n"
+timeseriesScheduler:
+  enabled: true
+  tag: "da0403e8"
+  imageName: vetec/enms-timeseries-scheduler
+  port: 8084
+  targetPort: 8084
+  replicas: 1
 
+influxdb2:
+  enabled: false
+  # influxdb2 가 enabled false가 되면 해당 ip로 서비스 생성
+  ip: 112.216.32.6
+  adminUser:
+    organization: "enms"
+    bucket: "history"
+    user: "vetec"
+    password: "vetecP@ssw0rd3721@!#"
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  service:
+    type: ClusterIP
+    port: 8086
+    targetPort: 8086
+    nodePort: 32086
+  persistence:
+    enabled: true
+    accessModes: ReadWriteOnce
+    subPath: influxdb
+    mountPath: /var/lib/influxdb2
+    size: 50Gi
 mariadb:
   capacity: 10Gi
   volumePermissions:
@@ -82,7 +102,7 @@ mariadb:
     database: "ems"
   primary:
     service:
-      type: NodePort
+      type: ClusterIP
       nodePorts:
         mysql: 32721
     persistence:
@@ -118,7 +138,7 @@ redis:
         - ReadWriteOnce
       subPath: redis
     service:
-      type: LoadBalancer
+      type: ClusterIP
       ports:
         redis: 6379
 

@@ -8,4 +8,4 @@ spec:
   resources:
     requests:
       storage: {{ .Values.redis.capacity }}
-  volumeName: redis-{{ .Values.persistentVolume.name }}
+  volumeName: {{.Release.Namespace}}-{{.Release.Name }}-redis-pv

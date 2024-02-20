@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-app-timeseries-api-controller
+  name: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-api-controller
 spec:
   replicas: {{ .Values.timeseriesApi.replicas }}
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-app-timeseries-api
+      app: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-api
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-app-timeseries-api
+        app: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-api
     spec:
       containers:
-        - name: {{ .Release.Name }}-app-timeseries-api-pod
+        - name: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-api-pod
           image: "{{ .Values.timeseriesApi.imageName }}:{{ .Values.timeseriesApi.tag }}"
           resources:
             requests:
@@ -22,16 +22,16 @@ spec:
               memory: "3Gi"
           env:
             - name: INFLUXDB_IP
-              value: influxdb
+              value: "influxdb2-{{ .Release.Namespace }}-{{ .Release.Name }}"
             - name: INFLUXDB_PORT
-              value: "{{ .Values.influxdb.port }}"
+              value: "{{ .Values.influxdb2.service.port }}"
             - name: INFLUXDB_BUCKET
-              value: "{{ .Values.influxdb.bucket }}"
+              value: "{{ .Values.influxdb2.adminUser.bucket }}"
             - name: INFLUXDB_ORG
-              value: "{{ .Values.influxdb.org }}"
+              value: "{{ .Values.influxdb2.adminUser.organization }}"
             - name: INFLUXDB_TOKEN
-              value: "{{ .Values.influxdb.token }}"
+              value: "{{ .Values.influxdb2.adminUser.token }}"
             - name: INFLUXDB_USERNAME
-              value: "{{ .Values.influxdb.username }}"
+              value: "{{ .Values.influxdb2.adminUser.user }}"
             - name: INFLUXDB_PASSWORD
-              value: "{{ .Values.influxdb.password }}"
+              value: "{{ .Values.influxdb2.adminUser.password }}"

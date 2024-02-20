@@ -1,0 +1,12 @@
+{{ if not .Values.influxdb2.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb2-{{ .Release.Namespace }}-{{ .Release.Name }}
+spec:
+  ports:
+    - protocol: TCP
+      port: {{ .Values.influxdb2.service.port }}
+      targetPort: {{ .Values.influxdb2.service.targetPort }}
+  type: ClusterIP
+{{ end }}

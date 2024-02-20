@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-app-frontend-controller
+  name: {{ .Release.Namespace }}-{{ .Release.Name }}-app-frontend-controller
 spec:
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-app-frontend
+      app: {{ .Release.Namespace }}-{{ .Release.Name }}-app-frontend
   replicas: 1
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-app-frontend
+        app: {{ .Release.Namespace }}-{{ .Release.Name }}-app-frontend
     spec:  
       containers:
-      - name: {{ .Release.Name }}-app-frontend-pod
+      - name: {{ .Release.Namespace }}-{{ .Release.Name }}-app-frontend-pod
 #        image: vetec/frontend
         image: "{{ .Values.frontend.imageName }}:{{ .Values.frontend.tag }}"
         ports:

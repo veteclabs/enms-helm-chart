@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: mariadb-{{ .Values.persistentVolume.name }}
+  name: {{.Release.Namespace}}-{{.Release.Name }}-mariadb-pv
 spec:
   capacity:
     storage: {{ .Values.mariadb.capacity }}
@@ -11,7 +11,7 @@ spec:
   persistentVolumeReclaimPolicy: {{ .Values.persistentVolume.reclaimPolicy }}
   storageClassName: {{ .Values.persistentVolume.storageClass }}
   local:
-    path: {{ .Values.persistentVolume.path }}
+    path: {{ .Values.persistentVolume.path }}/{{.Release.Namespace}}
   {{- if .Values.persistentVolume.nodeName }}
   nodeAffinity:
     required:
