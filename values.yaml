@@ -5,10 +5,10 @@
 replicaCount: 1
 
 scada:
-  ip: 192.168.65.3
+  ip: 7.83.93.65
   mqtt:
     port: 1883
-    targetPort: 1885
+    targetPort: 1883
     nodePort: 31885
     username: vetec
     password: vetec
@@ -118,9 +118,9 @@ redis:
         - ReadWriteOnce
       subPath: redis
     service:
-      type: NodePort
-      nodePorts:
-        redis: 32379
+      type: LoadBalancer
+      ports:
+        redis: 6379
 
 https://charts:
   bitnami:
