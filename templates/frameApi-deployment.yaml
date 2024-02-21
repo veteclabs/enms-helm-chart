@@ -75,11 +75,11 @@ spec:
             - name: DB_PASSWORD
               value: "{{ .Values.mariadb.auth.rootPassword }}"
             - name: TIMESERIES_SAVER_HOSTNAME
-              value: "{{ (printf "%s-timeseries-saver-service" ( .Release.Name )) }}"
+              value: "{{.Release.Name}}-app-timeseries-saver-service"
             - name: TIMESERIES_SAVER_PORT
               value: "{{ .Values.timeseriesSaver.port }}"
             - name: TIMESERIES_API_HOSTNAME
-              value: "{{ (printf "%s-timeseries-api-service" ( .Release.Name )) }}"
+              value: "{{.Release.Name}}-app-timeseries-api-service"
             - name: TIMESERIES_API_PORT
               value: "{{ .Values.timeseriesApi.port }}"
 {{- end}}

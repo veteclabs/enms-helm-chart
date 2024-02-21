@@ -22,7 +22,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ .Release.Name }}-app-backend-service
+                name: {{ .Release.Name }}-app-frame-api-service
                 port:
                   number: {{ .Values.frameApi.port }}
           # - path: /api/data
