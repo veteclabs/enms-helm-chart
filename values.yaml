@@ -15,8 +15,8 @@ scada:
     topic: "data"
 
 persistentVolume:
-#  path: /Users/Kimtaejun/helmCharts/volumes #
-  path: /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes /Users/Kimtaejun/helmCharts/volumes   # /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes
+  path: /Users/Kimtaejun/helmCharts/volumes #
+#  path: /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes /Users/Kimtaejun/helmCharts/volumes   # /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes
   enabled: true
   name: enms-volume
   storageClass: manual # hostpath #manual #local-storage
@@ -25,14 +25,19 @@ persistentVolume:
     - ReadWriteOnce
   reclaimPolicy: Retain
   nodeName: docker-desktop
-ingressNginx:
+ingress-nginx:
+
   controller:
     name: nginx
+    service:
+      loadBalancerIP: "192.168.0.5"
+      ports:
+        http: 3722
+        https: 443
   enabled: true
   type: LoadBalancer
   port: 86
   serverName: enms.com
-
 image:
   repository: nginx
   pullPolicy: IfNotPresent
@@ -90,8 +95,8 @@ influxdb2:
   persistence:
     enabled: true
     accessModes: ReadWriteOnce
-    subPath: influxdb
-    mountPath: /var/lib/influxdb2
+    subPath: "influxdb"
+    mountPath: /Users/Kimtaejun/helmCharts/volumes
     size: 50Gi
 mariadb:
   capacity: 10Gi

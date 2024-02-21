@@ -1,12 +1,12 @@
-{{- if not .Values.ingressNginx.enabled }}
+{{- if not (index .Values "ingress-nginx" "enabled") }}
 apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Release.Namespace }}-{{ .Release.Name }}-nginx-sercie
 spec:
-  type: {{ .Values.ingressNginx.type }}
+  type: {{ (index .Values "ingress-nginx" "type") }}
   ports:
-    - port: {{ .Values.ingressNginx.port }}
+    - port: {{ (index .Values "ingress-nginx" "controller" "service" "ports" "http") }}
       targetPort: 80
   selector:
     app: {{ .Release.Namespace }}-{{ .Release.Name }}-nginx

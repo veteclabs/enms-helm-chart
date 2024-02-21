@@ -1,4 +1,4 @@
-{{- if not .Values.ingressNginx.enabled }}
+{{- if not (index .Values "ingress-nginx" "enabled") }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
