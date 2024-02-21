@@ -42,7 +42,7 @@ image:
   repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "da0403e8"
+  tag: "048c7085"
   enabled: true
 #  annotations: {}
   host: "enms.maeil.com"
@@ -52,26 +52,26 @@ image:
 
 frontend:
   imageName: vetec/enms-frontend
-  tag: "da0403e8"
+  tag: "048c7085"
   port: 3722
   targetPort: 3722
 timeseriesApi:
   inamgeName: vetec/timeseries-api
-  tag: "da0403e8"
+  tag: "048c7085"
   imageName: vetec/enms-timeseries-api
   port: 8089
   targetPort: 8089
   replicas: 1
 timeseriesSaver:
   enabled: true
-  tag: "da0403e8"
+  tag: "048c7085"
   imageName: vetec/enms-timeseries-saver
   port: 8084
   targetPort: 8084
   replicas: 1
 timeseriesScheduler:
   enabled: true
-  tag: "da0403e8"
+  tag: "048c7085"
   imageName: vetec/enms-timeseries-scheduler
   port: 8084
   targetPort: 8084
@@ -79,7 +79,7 @@ timeseriesScheduler:
 
 influxdb2:
   enabled: false
-  # influxdb2 가 enabled false가 되면 해당 ip로 서비스 생성
+  # influxdb2 가 enabled false가 ?�면 ?�당 ip�??�비???�성
   ip: 112.216.32.6
   adminUser:
     organization: "enms"
