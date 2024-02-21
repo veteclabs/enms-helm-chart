@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-api-controller
+  name: {{ .Release.Name }}-app-timeseries-api-controller
 spec:
   replicas: {{ .Values.timeseriesApi.replicas }}
   selector:
     matchLabels:
-      app: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-api
+      app: {{ .Release.Name }}-app-timeseries-api
   template:
     metadata:
       labels:
-        app: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-api
+        app: {{ .Release.Name }}-app-timeseries-api
     spec:
       containers:
-        - name: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-api-pod
+        - name: {{ .Release.Name }}-app-timeseries-api-pod
           image: "{{ .Values.timeseriesApi.imageName }}:{{ .Values.timeseriesApi.tag }}"
           resources:
             requests:
@@ -22,7 +22,7 @@ spec:
               memory: "3Gi"
           env:
             - name: INFLUXDB_IP
-              value: "influxdb2-{{ .Release.Namespace }}-{{ .Release.Name }}"
+              value: "influxdb2-{{ .Release.Name }}"
             - name: INFLUXDB_PORT
               value: "{{ .Values.influxdb2.service.port }}"
             - name: INFLUXDB_BUCKET

@@ -1,10 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Namespace }}-{{ .Release.Name }}-mqtt-service
+  name: {{ .Release.Name }}-mqtt-service
 spec:
   ports:
     - protocol: TCP
       port: {{ .Values.scada.mqtt.port }}
       targetPort: {{ .Values.scada.mqtt.targetPort }}
-  type: ClusterIP
+      nodePort: {{ .Values.scada.mqtt.nodePort }}
+  type: NodePort

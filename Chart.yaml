@@ -3,7 +3,7 @@ name: vetec-enms
 description: A Helm chart for Kubernetes
 dependencies:
   - name: ingress-nginx
-    version: 4.9.1 # 사용하고자 하는 ingressNginx 차트의 버전을 명시하세요
+    version: 4.1.1 # 사용하고자 하는 ingressNginx 차트의 버전을 명시하세요
     repository: https://kubernetes.github.io/ingress-nginx
   - name: mariadb
     version: 16.0.2
@@ -14,9 +14,9 @@ dependencies:
 #  - name: influxdb
 #    version: 5.15.0
 #    repository: https://charts.bitnami.com/bitnami
-  - name: influxdb2
-    version: 2.1.2
-    repository: https://helm.influxdata.com/
+#  - name: influxdb2
+#    version: 2.1.2
+#    repository: https://helm.influxdata.com/
 
 # A chart can be either an 'application' or a 'library' chart.
 #

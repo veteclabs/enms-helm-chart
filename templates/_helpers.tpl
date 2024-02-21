@@ -47,7 +47,7 @@ Selector labels
 */}}
 {{- define "my-app.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "my-app.name" . }}
-app.kubernetes.io/instance: {{ .Release.Namespace }}-{{ .Release.Name }}
+app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*

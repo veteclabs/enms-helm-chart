@@ -9,14 +9,14 @@ scada:
   mqtt:
     port: 1883
     targetPort: 1883
-    nodePort: 31885
+    nodePort: 31883
     username: vetec
     password: vetec
     topic: "data"
 
 persistentVolume:
-  path: /Users/Kimtaejun/helmCharts/volumes #
-#  path: /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes /Users/Kimtaejun/helmCharts/volumes   # /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes
+#  path: /Users/Kimtaejun/helmCharts/volumes #
+  path: /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes /Users/Kimtaejun/helmCharts/volumes   # /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes
   enabled: true
   name: enms-volume
   storageClass: manual # hostpath #manual #local-storage
@@ -25,19 +25,25 @@ persistentVolume:
     - ReadWriteOnce
   reclaimPolicy: Retain
   nodeName: docker-desktop
-ingress-nginx:
 
-  controller:
-    name: nginx
-    service:
-      loadBalancerIP: "192.168.0.5"
-      ports:
-        http: 3722
-        https: 443
+ingress-nginx:
   enabled: true
+  host: plate.team
+  ingressClass: vetec-ingress-nginx
+  controller:
+    name: vetec-ingress-nginx
+    ingressClassResource:
+      enabled: true
+      name: vetec-ingress-nginx
+    service:
+      externalIPs:
+        - "112.216.32.6"
+      loadBalancerIP: "112.216.32.6"
+      externalTrafficPolicy: "Local"
+      ports:
+        http: 80
+        https: 444
   type: LoadBalancer
-  port: 86
-  serverName: enms.com
 image:
   repository: nginx
   pullPolicy: IfNotPresent
@@ -96,7 +102,8 @@ influxdb2:
     enabled: true
     accessModes: ReadWriteOnce
     subPath: "influxdb"
-    mountPath: /Users/Kimtaejun/helmCharts/volumes
+#    mountPath: /Users/Kimtaejun/helmCharts/volumes
+    mountPath: /run/desktop/mnt/host/c/Users/21thp/workDir/volumes
     size: 50Gi
 mariadb:
   capacity: 10Gi

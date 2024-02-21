@@ -2,16 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-saver-controller
+  name: {{ .Release.Name }}-app-timeseries-saver-controller
 spec:
   replicas: {{ .Values.timeseriesApi.replicas }}
   selector:
     matchLabels:
-      app: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-saver
+      app: {{ .Release.Name }}-app-timeseries-saver
   template:
     metadata:
       labels:
-        app: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-saver
+        app: {{ .Release.Name }}-app-timeseries-saver
     spec:
       {{ if .Values.redis.enabled }}
       initContainers:
@@ -20,7 +20,7 @@ spec:
           command: [ 'sh', '-c', 'until kubectl get pods -l app.kubernetes.io/instance={{.Release.Name}} -l app.kubernetes.io/name=redis -n {{.Release.Namespace}} | grep Running; do echo waiting for mariadb; sleep 10; done;' ]
       {{- end }}
       containers:
-        - name: {{ .Release.Namespace }}-{{ .Release.Name }}-app-timeseries-saver-pod
+        - name: {{ .Release.Name }}-app-timeseries-saver-pod
           image: "{{ .Values.timeseriesSaver.imageName }}:{{ .Values.timeseriesApi.tag }}"
           resources:
             requests:
@@ -29,7 +29,7 @@ spec:
               memory: "3Gi"
           env:
             - name: INFLUXDB_IP
-              value: "influxdb2-{{ .Release.Namespace }}-{{ .Release.Name }}"
+              value: "influxdb2-{{ .Release.Name }}"
             - name: INFLUXDB_PORT
               value: "{{ .Values.influxdb2.service.port }}"
             - name: INFLUXDB_BUCKET
