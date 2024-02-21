@@ -1,17 +1,17 @@
-{{ if .Values.timeseriesScheduler.enabled }}
+{{ if .Values.timeseriesSaver.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-app-timeseries-scheduler-controller
+  name: {{ .Release.Name }}-app-frame-api-controller
 spec:
-  replicas: {{ .Values.timeseriesApi.replicas }}
+  replicas: {{ .Values.frameApi.replicas }}
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-app-timeseries-scheduler
+      app: {{ .Release.Name }}-app-frame-api
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-app-timeseries-scheduler
+        app: {{ .Release.Name }}-app-frame-api
     spec:
       {{ if .Values.redis.enabled }}
       initContainers:
@@ -20,13 +20,13 @@ spec:
           command: [ 'sh', '-c', 'until kubectl get pods -l app.kubernetes.io/instance={{.Release.Name}} -l app.kubernetes.io/name=redis -n {{.Release.Namespace}} | grep Running; do echo waiting for mariadb; sleep 10; done;' ]
       {{- end }}
       containers:
-        - name: {{ .Release.Name }}-app-timeseries-scheduler-pod
-          image: "{{ .Values.timeseriesScheduler.imageName }}:{{ .Values.timeseriesApi.tag }}"
+        - name: {{ .Release.Name }}-app-frame-api-pod
+          image: "{{ .Values.frameApi.imageName }}:{{ .Values.frameApi.tag }}"
           resources:
             requests:
-              memory: "1Gi"
+              memory: "2Gi"
             limits:
-              memory: "1Gi"
+              memory: "3Gi"
           env:
             - name: INFLUXDB_IP
               value: "influxdb2-{{ .Release.Name }}"
@@ -44,6 +44,10 @@ spec:
               value: "{{ .Values.influxdb2.adminUser.password }}"
             - name: SCADA_IP
               value: "{{ (printf "%s-mqtt-service" ( .Release.Name )) }}"
+            - name: SCADA_PROJECT_NAME
+              value: "{{ .Values.scada.projectName }}"
+            - name: SCADA_NODE_NAME
+              value: "{{ .Values.scada.nodeName }}"
             - name: MQTT_PORT
               value: "{{ .Values.scada.mqtt.port }}"
             - name: MQTT_USERNAME
@@ -60,4 +64,14 @@ spec:
               value: "{{ ternary 6379 (printf "%s" (.Values.redis.port))  .Values.redis.enabled }}"
             - name: REDIS_PASSWORD
               value: "{{ .Values.redis.auth.password }}"
+            - name: DB_HOSTNAME
+              value: "{{ ternary (printf "%s-mariadb" (.Release.Name)) .Values.redis.ip  .Values.mariadb.enabled }}"
+            - name: DB_NAME
+              value: "enms"
+            - name: DB_PORT
+              value: "{{ ternary 3306 .Values.mariadb.port  .Values.mariadb.enabled }}"
+            - name: DB_USERNAME
+              value: root
+            - name: DB_PASSWORD
+              value: "{{ .Values.mariadb.auth.rootPassword }}"
 {{- end}}

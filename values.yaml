@@ -6,6 +6,8 @@ replicaCount: 1
 
 scada:
   ip: 7.83.93.65
+  projectName: "enms"
+  nodeName: "enms"
   mqtt:
     port: 1883
     targetPort: 1883
@@ -82,10 +84,15 @@ timeseriesScheduler:
   port: 8084
   targetPort: 8084
   replicas: 1
-
+frameApi:
+    enabled: true
+    tag: "048c7085"
+    imageName: vetec/enms-backend
+    port: 8084
+    targetPort: 8084
+    replicas: 1
 influxdb2:
   enabled: false
-  # influxdb2 Í∞Ä enabled falseÍ∞Ä ?òÎ©¥ ?¥Îãπ ipÎ°??úÎπÑ???ùÏÑ±
   ip: 112.216.32.6
   adminUser:
     organization: "enms"
@@ -106,7 +113,9 @@ influxdb2:
     mountPath: /run/desktop/mnt/host/c/Users/21thp/workDir/volumes
     size: 50Gi
 mariadb:
+  enabled: true
   capacity: 10Gi
+  port: 3721
   volumePermissions:
     enabled: true
   auth:
@@ -115,8 +124,6 @@ mariadb:
   primary:
     service:
       type: ClusterIP
-      nodePorts:
-        mysql: 32721
     persistence:
       enabled: true
       existingClaim: mariadb-pvc
