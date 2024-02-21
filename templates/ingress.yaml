@@ -18,13 +18,13 @@ spec:
                 name: {{ .Release.Name }}-app-frontend-service
                 port:
                   number: {{ .Values.frontend.port }}
-          # - path: /api
-          #   pathType: Prefix
-          #   backend:
-          #     service:
-          #       name: app-frame-api
-          #       port:
-          #         number: 8038
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Release.Name }}-app-backend-service
+                port:
+                  number: {{ .Values.frameApi.port }}
           # - path: /api/data
           #   pathType: Prefix
           #   backend:

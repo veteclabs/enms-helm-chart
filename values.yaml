@@ -85,12 +85,12 @@ timeseriesScheduler:
   targetPort: 8084
   replicas: 1
 frameApi:
-    enabled: true
-    tag: "04c96d6a"
-    imageName: vetec/enms-backend
-    port: 8084
-    targetPort: 8084
-    replicas: 1
+  enabled: true
+  tag: "048c7085"
+  imageName: vetec/enms-backend
+  port: 8038
+  targetPort: 8038
+  replicas: 1
 influxdb2:
   enabled: false
   ip: 112.216.32.6
