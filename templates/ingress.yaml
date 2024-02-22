@@ -28,6 +28,13 @@ spec:
                 name: {{ .Release.Name }}-app-frame-api-service
                 port:
                   number: {{ .Values.frameApi.port }}
+          - path: /api/auth/login
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Release.Name }}-app-frame-api-service
+                port:
+                  number: {{ .Values.frameApi.port }}
         {{ if .Values.timeseriesApi.enabled }}
           - path: /api/data
             pathType: Prefix
