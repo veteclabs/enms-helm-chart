@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-app-timeeseries-saver-service
+  name: {{ .Release.Name }}-app-timeseries-saver-service
 spec:
   selector:
     app: {{ .Release.Name }}-app-timeseries-saver

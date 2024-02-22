@@ -64,6 +64,7 @@ frontend:
   port: 3722
   targetPort: 3722
 timeseriesApi:
+  enabled: true
   inamgeName: vetec/timeseries-api
   tag: "20c64ff5"
   imageName: vetec/enms-timeseries-api

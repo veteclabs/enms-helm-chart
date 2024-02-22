@@ -25,19 +25,23 @@ spec:
                 name: {{ .Release.Name }}-app-frame-api-service
                 port:
                   number: {{ .Values.frameApi.port }}
-          # - path: /api/data
-          #   pathType: Prefix
-          #   backend:
-          #     service:
-          #       name: app-timeseries-api
-          #       port:
-          #         number: 8089
-          # - path: /tsdb
-          #   pathType: Prefix
-          #   backend:
-          #     service:
-          #       name: app-timeseries-saver
-          #       port:
-          #         number: 8084
+        {{ if .Values.timeseriesApi.enabled }}
+          - path: /api/data
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Release.Name }}-app-timeseries-api-service
+                port:
+                  number: {{ .Values.timeseriesApi.port }}
+        {{ end }}
+        {{ if .Values.timeseriesSaver.enabled }}
+          - path: /tsdb
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Release.Name }}-app-timeseries-saver-service
+                port:
+                  number: {{ .Values.timeseriesSaver.port }}
+        {{ end }}
 
 {{- end -}}
