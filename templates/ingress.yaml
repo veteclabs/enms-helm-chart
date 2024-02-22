@@ -6,6 +6,10 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/enable-cors: "false"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host $http_host;
 
   name: nginx-ingress
 spec:
@@ -22,13 +26,6 @@ spec:
                   number: {{ .Values.frontend.port }}
 
           - path: /api
-            pathType: Prefix
-            backend:
-              service:
-                name: {{ .Release.Name }}-app-frame-api-service
-                port:
-                  number: {{ .Values.frameApi.port }}
-          - path: /api/auth/login
             pathType: Prefix
             backend:
               service:
