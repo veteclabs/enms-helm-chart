@@ -31,7 +31,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ .Release.Name }}-app-timeseries-api-service2
+                name: {{ .Release.Name }}-app-timeseries-api-service
                 port:
                   number: {{ .Values.timeseriesApi.port }}
         {{ end }}
