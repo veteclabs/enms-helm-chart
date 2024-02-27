@@ -1,0 +1,10 @@
+{{- if (index .Values "ingress-nginx" "type") | eq "ClusterIP" }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Namespace }}-{{.Release.Name}}-service
+  namespace: ingress
+spec:
+  type: ExternalName
+  externalName: {{ .Release.Name }}-nginx-service.{{ .Release.Namespace }}.svc.cluster.local
+{{- end}}

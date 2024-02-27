@@ -16,6 +16,8 @@ scada:
     password: vetec
     topic: "data"
 
+
+
 persistentVolume:
 #  path: /Users/Kimtaejun/helmCharts/volumes #
   path: /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes /Users/Kimtaejun/helmCharts/volumes   # /run/desktop/mnt/host/c/Users/21thp/workDir/volumes #C:\Users\21thp\workDir\volumes #/C/Users/21thp/workDir/volumes
@@ -29,9 +31,9 @@ persistentVolume:
   nodeName: docker-desktop
 
 ingress-nginx:
-  enabled: true
+  enabled: false
   host: plate.team
-  ingressClass: vetec-ingress-nginx
+  fullnameOverride: "vetec-ingress-nginx"
   controller:
     name: vetec-ingress-nginx
     ingressClassResource:
@@ -43,9 +45,10 @@ ingress-nginx:
       loadBalancerIP: "112.216.32.6"
       externalTrafficPolicy: "Local"
       ports:
-        http: 80
+        http: 3722
         https: 444
-  type: LoadBalancer
+  type: ClusterIP
+#  type: LoadBalancer
 image:
   repository: nginx
   pullPolicy: IfNotPresent

@@ -7,5 +7,5 @@ spec:
     - protocol: TCP
       port: {{ .Values.scada.mqtt.port }}
       targetPort: {{ .Values.scada.mqtt.targetPort }}
-      nodePort: {{ .Values.scada.mqtt.nodePort }}
-  type: NodePort
+
+  type: ClusterIP

@@ -15,9 +15,9 @@ spec:
     spec:
       {{ if .Values.redis.enabled }}
       initContainers:
-        - name: wait-for-mariadb
-          image: bitnami/kubectl:latest
-          command: [ 'sh', '-c', 'until kubectl get pods -l app.kubernetes.io/instance={{.Release.Name}} -l app.kubernetes.io/name=redis -n {{.Release.Namespace}} | grep Running; do echo waiting for mariadb; sleep 10; done;' ]
+{{/*        - name: wait-for-mariadb*/}}
+{{/*          image: bitnami/kubectl:latest*/}}
+{{/*          command: [ 'sh', '-c', 'until kubectl get pods -l app.kubernetes.io/instance={{.Release.Name}} -l app.kubernetes.io/name=redis -n {{.Release.Namespace}} | grep Running; do echo waiting for mariadb; sleep 10; done;' ]*/}}
       {{- end }}
       containers:
         - name: {{ .Release.Name }}-app-timeseries-scheduler-pod

@@ -2,12 +2,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-nginx-sercie
+  name: {{ .Release.Name }}-nginx-service
 spec:
   type: {{ (index .Values "ingress-nginx" "type") }}
   ports:
     - port: {{ (index .Values "ingress-nginx" "controller" "service" "ports" "http") }}
       targetPort: 80
+      name: http
   selector:
     app: {{ .Release.Name }}-nginx
 {{- end}}
