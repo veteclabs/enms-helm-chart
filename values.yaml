@@ -76,7 +76,7 @@ timeseriesScheduler:
   replicas: 1
 frameApi:
   enabled: true
-  tag: d40c1232
+  tag: cd392efe
   imageName: vetec/pms-frame-api
   port: 8038
   targetPort: 8038
