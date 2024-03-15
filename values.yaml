@@ -184,6 +184,3 @@ autoscaling:
 nodeSelector: {}
 tolerations: []
 affinity: {}
-timeserisApi:
-  tag: '435e0320'
-  imageName: vetec/pms-timeseris-api
