@@ -62,7 +62,7 @@ timeseriesApi:
   replicas: 1
 timeseriesSaver:
   enabled: true
-  tag: '435e0320'
+  tag: 9497eb1f
   imageName: vetec/pms-timeseries-saver
   port: 8084
   targetPort: 8084
