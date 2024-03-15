@@ -49,7 +49,7 @@ image:
   tlsSecret: ''
 frontend:
   imageName: vetec/pms-frontend
-  tag: 0ebaa521
+  tag: '435e0320'
   port: 3722
   targetPort: 3722
 timeseriesApi:
@@ -62,21 +62,21 @@ timeseriesApi:
   replicas: 1
 timeseriesSaver:
   enabled: true
-  tag: 0ebaa521
+  tag: '435e0320'
   imageName: vetec/pms-timeseries-saver
   port: 8084
   targetPort: 8084
   replicas: 1
 timeseriesScheduler:
   enabled: true
-  tag: 0ebaa521
+  tag: '435e0320'
   imageName: vetec/pms-timeseries-scheduler
   port: 8084
   targetPort: 8084
   replicas: 1
 frameApi:
   enabled: true
-  tag: 7cfd1a7c
+  tag: '435e0320'
   imageName: vetec/pms-frame-api
   port: 8038
   targetPort: 8038
@@ -184,3 +184,6 @@ autoscaling:
 nodeSelector: {}
 tolerations: []
 affinity: {}
+timeserisApi:
+  tag: '435e0320'
+  imageName: vetec/pms-timeseris-api
