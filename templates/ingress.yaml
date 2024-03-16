@@ -9,11 +9,11 @@ metadata:
     nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       more_set_headers "Access-Control-Allow-Origin: $http_origin";
-
+  namespace: {{.Release.Namespace}}
   name: nginx-ingress
 spec:
   rules:
-    - host: {{.Release.Namespace}}.plate.team
+    - host: {{.Release.Namespace}}.{{- (index .Values "ingress-nginx" "host") }}
     - http:
         paths:
           - path: /
@@ -49,5 +49,8 @@ spec:
                 port:
                   number: {{ .Values.timeseriesSaver.port }}
         {{ end }}
-
+  tls:
+    - hosts:
+        - {{ .Release.Namespace }}.{{- (index .Values "ingress-nginx" "host") }}
+      secretName: {{ .Release.Namespace }}-{{ .Release.Name }}-plateteam-tls
 {{- end -}}

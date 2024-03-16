@@ -11,7 +11,7 @@ scada:
     password: vetec
     topic: data
 persistentVolume:
-  path: /run/desktop/mnt/host/c/Users/21thp/workDir/volumes
+  path: /volumes
   enabled: true
   name: enms-volume
   storageClass: manual
@@ -19,24 +19,19 @@ persistentVolume:
   accessModes:
   - ReadWriteOnce
   reclaimPolicy: Retain
-  nodeName: docker-desktop
+  nodeName: platek8s-master-node
 ingress-nginx:
-  enabled: false
+  enabled: true
   host: plate.team
-  fullnameOverride: vetec-ingress-nginx
   controller:
-    name: vetec-ingress-nginx
     ingressClassResource:
-      enabled: true
-      name: vetec-ingress-nginx
+      enabled: false
     service:
-      externalIPs:
-      - 112.216.32.6
-      loadBalancerIP: 112.216.32.6
+      loadBalancerIP: 10.4.0.5
       externalTrafficPolicy: Local
       ports:
-        http: 3722
-        https: 444
+        http: 80
+        https: 443
   type: ClusterIP
 image:
   repository: nginx
