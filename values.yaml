@@ -21,7 +21,7 @@ persistentVolume:
   reclaimPolicy: Retain
   nodeName: platek8s-master-node
 ingress-nginx:
-  enabled: true
+  enabled: false
   host: plate.team
   controller:
     ingressClassResource:
