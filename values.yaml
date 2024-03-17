@@ -1,6 +1,6 @@
 replicaCount: 1
 scada:
-  ip: 7.83.93.65
+  ip: 112.216.32.6
   projectName: enms
   nodeName: enms
   mqtt:
