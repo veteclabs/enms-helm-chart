@@ -52,5 +52,5 @@ spec:
   tls:
     - hosts:
         - {{ .Release.Namespace }}.{{- (index .Values "ingress-nginx" "host") }}
-      secretName: {{ .Release.Namespace }}-{{ .Release.Name }}-plateteam-tls
+      secretName: {{ .Release.Namespace }}-plateteam-tls
 {{- end -}}
