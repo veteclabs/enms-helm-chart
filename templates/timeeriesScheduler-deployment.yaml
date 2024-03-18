@@ -54,6 +54,16 @@ spec:
               value: "{{ .Values.scada.mqtt.topic }}"
             - name: MQTT_CLIENTID
               value: "enms-client-wejij342089j03" # {{ randAlphaNum 10 | quote }}"
+            - name: DB_HOSTNAME
+              value: "{{ ternary (printf "%s-mariadb" (.Release.Name)) .Values.redis.ip  .Values.mariadb.enabled }}"
+            - name: DB_NAME
+              value: "ems"
+            - name: DB_PORT
+              value: "{{ ternary 3306 .Values.mariadb.port  .Values.mariadb.enabled }}"
+            - name: DB_USERNAME
+              value: root
+            - name: DB_PASSWORD
+              value: "{{ .Values.mariadb.auth.rootPassword }}"
             - name: REDIS_IP
               value: "{{ ternary (printf "%s-redis-master" (.Release.Name)) .Values.redis.ip  .Values.redis.enabled }}"
             - name: REDIS_PORT
