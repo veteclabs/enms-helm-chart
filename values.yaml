@@ -80,7 +80,7 @@ influxdb2:
   enabled: false
   ip: 112.216.32.6
   adminUser:
-    organization: enms
+    organization: primary
     bucket: history
     user: vetec
     password: vetecP@ssw0rd3721@!#
