@@ -64,7 +64,7 @@ timeseriesSaver:
   replicas: 1
 timeseriesScheduler:
   enabled: true
-  tag: .inf
+  tag: 331e4897
   imageName: vetec/pms-timeseries-scheduler
   port: 8084
   targetPort: 8084
