@@ -83,7 +83,7 @@ timeseriesSaver:
   replicas: 1
 timeseriesScheduler:
   enabled: true
-  tag: "0ebaa521"
+  tag: "435e0320"
   imageName: vetec/enms-timeseries-scheduler
   port: 8084
   targetPort: 8084
