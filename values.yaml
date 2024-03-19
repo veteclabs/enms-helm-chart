@@ -50,7 +50,7 @@ frontend:
 timeseriesApi:
   enabled: true
   inamgeName: vetec/timeseries-api
-  tag: '''32f3da5d'''
+  tag: '32f3da5d'
   imageName: vetec/pms-timeseries-api
   port: 8089
   targetPort: 8089
