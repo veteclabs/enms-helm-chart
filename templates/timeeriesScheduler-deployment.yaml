@@ -21,7 +21,7 @@ spec:
       {{- end }}
       containers:
         - name: {{ .Release.Name }}-app-timeseries-scheduler-pod
-          image: "{{ .Values.timeseriesScheduler.imageName }}:{{ .Values.timeseriesApi.tag }}"
+          image: "{{ .Values.timeseriesScheduler.imageName }}:{{ .Values.timeseriesScheduler.tag }}"
           resources:
             requests:
               memory: "1Gi"
