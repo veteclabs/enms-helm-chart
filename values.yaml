@@ -142,8 +142,7 @@ redis:
       - ReadWriteOnce
       subPath: redis
     service:
-      type: LoadBalancer
-      loadBalancerIP: 10.4.0.5
+      type: ClusterIP
       ports:
         redis: 6379
 https://charts:
