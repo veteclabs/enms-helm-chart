@@ -107,7 +107,8 @@ mariadb:
     database: ems
   primary:
     service:
-      type: ClusterIP
+      type: LoadBalancer
+      loadBalancerIP: 10.4.0.4
     persistence:
       enabled: true
       existingClaim: mariadb-pvc
@@ -141,7 +142,8 @@ redis:
       - ReadWriteOnce
       subPath: redis
     service:
-      type: ClusterIP
+      type: LoadBalancer
+      loadBalancerIP: 10.4.0.4
       ports:
         redis: 6379
 https://charts:
