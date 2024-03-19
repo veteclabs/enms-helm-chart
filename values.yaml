@@ -1,6 +1,6 @@
 replicaCount: 1
 scada:
-  ip: 7.83.93.65
+  ip: 112.216.32.6
   projectName: enms
   nodeName: enms
   mqtt:
@@ -50,28 +50,28 @@ frontend:
 timeseriesApi:
   enabled: true
   inamgeName: vetec/timeseries-api
-  tag: 55cc2fd1
+  tag: '32f3da5d'
   imageName: vetec/pms-timeseries-api
   port: 8089
   targetPort: 8089
   replicas: 1
 timeseriesSaver:
   enabled: true
-  tag: 9497eb1f
+  tag: '331e4897'
   imageName: vetec/pms-timeseries-saver
   port: 8084
   targetPort: 8084
   replicas: 1
 timeseriesScheduler:
   enabled: true
-  tag: 435e0320
+  tag: '435e0320'
   imageName: vetec/pms-timeseries-scheduler
   port: 8084
   targetPort: 8084
   replicas: 1
 frameApi:
   enabled: true
-  tag: cd392efe
+  tag: a2b61062
   imageName: vetec/pms-frame-api
   port: 8038
   targetPort: 8038
@@ -80,7 +80,7 @@ influxdb2:
   enabled: false
   ip: 112.216.32.6
   adminUser:
-    organization: enms
+    organization: primary
     bucket: history
     user: vetec
     password: vetecP@ssw0rd3721@!#
