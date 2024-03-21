@@ -53,7 +53,7 @@ image:
   repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0ebaa521"
+  tag: 0ebaa521
   enabled: true
 #  annotations: {}
   host: "enms.maeil.com"
@@ -63,34 +63,34 @@ image:
 
 frontend:
   imageName: vetec/enms-frontend
-  tag: "0ebaa521"
+  tag: 0ebaa521
   port: 3722
   targetPort: 3722
 timeseriesApi:
   enabled: true
   inamgeName: vetec/timeseries-api
-  tag: "0ebaa521"
+  tag: 0ebaa521
   imageName: vetec/enms-timeseries-api
   port: 8089
   targetPort: 8089
   replicas: 1
 timeseriesSaver:
   enabled: true
-  tag: "0ebaa521"
+  tag: 0ebaa521
   imageName: vetec/enms-timeseries-saver
   port: 8084
   targetPort: 8084
   replicas: 1
 timeseriesScheduler:
   enabled: true
-  tag: "435e0320"
+  tag: 435e0320
   imageName: vetec/enms-timeseries-scheduler
   port: 8084
   targetPort: 8084
   replicas: 1
 frameApi:
   enabled: true
-  tag: "0ebaa521"
+  tag: 0ebaa521
   imageName: vetec/enms-backend
   port: 8038
   targetPort: 8038
@@ -99,11 +99,11 @@ influxdb2:
   enabled: false
   ip: 112.216.32.6
   adminUser:
-    organization: "enms"
-    bucket: "history"
-    user: "vetec"
-    password: "vetecP@ssw0rd3721@!#"
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    organization: ""
+    bucket: ""
+    user: ""
+    password: "@ssw0rd3721@!#"
+    token: ""
   service:
     type: ClusterIP
     port: 8086
