@@ -57,14 +57,14 @@ timeseriesApi:
   replicas: 1
 timeseriesSaver:
   enabled: true
-  tag: .inf
+  tag: 331e4897
   imageName: vetec/pms-timeseries-saver
   port: 8084
   targetPort: 8084
   replicas: 3
 timeseriesScheduler:
   enabled: true
-  tag: .inf
+  tag: 435e0320
   imageName: vetec/pms-timeseries-scheduler
   port: 8084
   targetPort: 8084
