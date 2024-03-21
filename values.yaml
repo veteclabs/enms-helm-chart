@@ -97,12 +97,12 @@ frameApi:
   replicas: 1
 influxdb2:
   enabled: false
-  ip: 112.216.32.6
+  ip: ""
   adminUser:
     organization: ""
     bucket: ""
     user: ""
-    password: "@ssw0rd3721@!#"
+    password: ""
     token: ""
   service:
     type: ClusterIP
