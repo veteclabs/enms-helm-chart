@@ -44,7 +44,7 @@ image:
   tlsSecret: ''
 frontend:
   imageName: vetec/pms-frontend
-  tag: 435e0320
+  tag: .inf
   port: 3722
   targetPort: 3722
 timeseriesApi:
@@ -57,14 +57,14 @@ timeseriesApi:
   replicas: 1
 timeseriesSaver:
   enabled: true
-  tag: 331e4897
+  tag: .inf
   imageName: vetec/pms-timeseries-saver
   port: 8084
   targetPort: 8084
   replicas: 3
 timeseriesScheduler:
   enabled: true
-  tag: 435e0320
+  tag: .inf
   imageName: vetec/pms-timeseries-scheduler
   port: 8084
   targetPort: 8084
@@ -78,13 +78,13 @@ frameApi:
   replicas: 1
 influxdb2:
   enabled: false
-  ip: ""
+  ip: ''
   adminUser:
-    organization: ""
-    bucket: ""
-    user: ""
-    password: ""
-    token: ""
+    organization: ''
+    bucket: ''
+    user: ''
+    password: ''
+    token: ''
   service:
     type: ClusterIP
     port: 8086
