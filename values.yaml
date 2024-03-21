@@ -31,7 +31,7 @@ persistentVolume:
   nodeName: platek8s-master-node
 
 ingress-nginx:
-  enabled: false
+  enabled: true
   host: plate.team
   fullnameOverride: "vetec-ingress-nginx"
   controller:
