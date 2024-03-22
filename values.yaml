@@ -36,7 +36,7 @@ ingress-nginx:
 image:
   repository: nginx
   pullPolicy: IfNotPresent
-  tag: '0ebaa521'
+  tag: 0ebaa521
   enabled: true
   host: enms.maeil.com
   path: /
@@ -44,7 +44,7 @@ image:
   tlsSecret: ''
 frontend:
   imageName: vetec/pms-frontend
-  tag: '19adc1e9'
+  tag: 19adc1e9
   port: 3722
   targetPort: 3722
 timeseriesApi:
