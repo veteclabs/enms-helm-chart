@@ -36,7 +36,7 @@ ingress-nginx:
 image:
   repository: nginx
   pullPolicy: IfNotPresent
-  tag: 0ebaa521
+  tag: '0ebaa521'
   enabled: true
   host: enms.maeil.com
   path: /
@@ -44,13 +44,13 @@ image:
   tlsSecret: ''
 frontend:
   imageName: vetec/pms-frontend
-  tag: 19adc1e9
+  tag: '19adc1e9'
   port: 3722
   targetPort: 3722
 timeseriesApi:
   enabled: true
   inamgeName: vetec/timeseries-api
-  tag: '''9801f4a2'''
+  tag: '19adc1e9'
   imageName: vetec/pms-timeseries-api
   port: 8089
   targetPort: 8089
@@ -71,7 +71,7 @@ timeseriesScheduler:
   replicas: 1
 frameApi:
   enabled: true
-  tag: a2b61062
+  tag: 'a2b61062'
   imageName: vetec/pms-frame-api
   port: 8038
   targetPort: 8038
