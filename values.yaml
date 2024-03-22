@@ -50,21 +50,21 @@ frontend:
 timeseriesApi:
   enabled: true
   inamgeName: vetec/timeseries-api
-  tag: 19adc1e9
+  tag: b3ec3527
   imageName: vetec/pms-timeseries-api
   port: 8089
   targetPort: 8089
   replicas: 1
 timeseriesSaver:
   enabled: true
-  tag: 331e4897
+  tag: Infinity
   imageName: vetec/pms-timeseries-saver
   port: 8084
   targetPort: 8084
   replicas: 3
 timeseriesScheduler:
   enabled: true
-  tag: 435e0320
+  tag: Infinity
   imageName: vetec/pms-timeseries-scheduler
   port: 8084
   targetPort: 8084
