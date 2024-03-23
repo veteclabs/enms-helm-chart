@@ -1,4 +1,5 @@
 replicaCount: 1
+timezone: Asia/Seoul
 scada:
   ip: 112.216.32.6
   projectName: enms
