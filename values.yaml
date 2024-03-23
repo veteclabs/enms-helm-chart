@@ -100,7 +100,7 @@ influxdb2:
 
 mariadb:
   enabled: true
-  capacity: 10Gi
+  capacity: 1Gi
   port: 3721
   volumePermissions:
     enabled: true
@@ -130,7 +130,7 @@ redis:
   auth:
     enabled: true
     password: vetec3721!
-  capacity: 8Gi
+  capacity: 500Mi
   architecture: standalone
   service:
     type: NodePort
