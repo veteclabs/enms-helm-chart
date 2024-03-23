@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: {{ .Release.Name }}-app-timeseries-saver-controller
 spec:
-  replicas: {{ .Values.timeseriesApi.replicas }}
+  replicas: {{ .Values.timeseriesSaver.replicas }}
   selector:
     matchLabels:
       app: {{ .Release.Name }}-app-timeseries-saver
@@ -21,7 +21,7 @@ spec:
       {{- end }}
       containers:
         - name: {{ .Release.Name }}-app-timeseries-saver-pod
-          image: "{{ .Values.timeseriesSaver.imageName }}:{{ .Values.timeseriesApi.tag }}"
+          image: "{{ .Values.timeseriesSaver.imageName }}:{{ .Values.timeseriesSaver.tag }}"
           resources:
             requests:
               memory: "2Gi"

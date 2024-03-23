@@ -1,4 +1,4 @@
-{{ if .Values.timeseriesSaver.enabled }}
+{{ if .Values.frameApi.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:

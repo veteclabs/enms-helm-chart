@@ -21,22 +21,17 @@ persistentVolume:
   reclaimPolicy: Retain
   nodeName: platek8s-master-node
 ingress-nginx:
-  enabled: true
-  host: plate.team
-  fullnameOverride: vetec-ingress-nginx
+  enabled: false
+  host: ""
   controller:
-    name: vetec-ingress-nginx
     ingressClassResource:
-      enabled: true
-      name: vetec-ingress-nginx
+      enabled: false
     service:
-      externalIPs:
-      - 112.216.32.6
-      loadBalancerIP: 112.216.32.6
+      loadBalancerIP: 10.4.0.5
       externalTrafficPolicy: Local
       ports:
-        http: 3722
-        https: 444
+        http: 80
+        https: 443
   type: ClusterIP
 image:
   repository: nginx
