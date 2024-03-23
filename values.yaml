@@ -44,6 +44,7 @@ image:
   tls: false
   tlsSecret: ''
 frontend:
+  replicas: 2
   imageName: vetec/enms-frontend
   tag: '0ebaa521'
   port: 3722
@@ -55,14 +56,14 @@ timeseriesApi:
   imageName: vetec/enms-timeseries-api
   port: 8089
   targetPort: 8089
-  replicas: 1
+  replicas: 2
 timeseriesSaver:
   enabled: true
   tag: '0ebaa521'
   imageName: vetec/enms-timeseries-saver
   port: 8084
   targetPort: 8084
-  replicas: 1
+  replicas: 2
 timeseriesScheduler:
   enabled: true
   tag: '0ebaa521'
@@ -76,7 +77,7 @@ frameApi:
   imageName: vetec/enms-frame-api
   port: 8038
   targetPort: 8038
-  replicas: 1
+  replicas: 3
 influxdb2:
   enabled: false
   ip: ''

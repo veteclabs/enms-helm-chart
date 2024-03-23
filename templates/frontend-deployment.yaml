@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: {{ .Release.Name }}-app-frontend
-  replicas: 1
+  replicas: {{ .Values.frontend.replicas }}
   strategy:
     type: RollingUpdate
   template:
