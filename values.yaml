@@ -1,6 +1,6 @@
 replicaCount: 1
 scada:
-  ip: 7.83.93.65
+  ip: 127.0.0.1
   projectName: enms
   nodeName: enms
   mqtt:
@@ -10,8 +10,9 @@ scada:
     username: vetec
     password: vetec
     topic: data
+timezone: Asia/Seoul
 persistentVolume:
-  path: /volumes
+  path: /Users/Kimtaejun/helmCharts/volumes
   enabled: true
   name: enms-volume
   storageClass: manual
@@ -30,8 +31,8 @@ ingress-nginx:
       loadBalancerIP: 10.4.0.5
       externalTrafficPolicy: Local
       ports:
-        http: 80
-        https: 443
+        http: 800
+        https: 4433
   type: ClusterIP
 image:
   repository: nginx
@@ -96,6 +97,7 @@ influxdb2:
     subPath: influxdb
     mountPath: /run/desktop/mnt/host/c/Users/21thp/workDir/volumes
     size: 50Gi
+
 mariadb:
   enabled: true
   capacity: 10Gi
@@ -106,6 +108,9 @@ mariadb:
     rootPassword: vetec3721!
     database: ems
   primary:
+    extraFlags:
+      - name: TZ
+        value: Asia/Seoul
     service:
       type: ClusterIP
     persistence:

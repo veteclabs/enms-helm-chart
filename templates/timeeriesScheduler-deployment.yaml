@@ -28,6 +28,8 @@ spec:
             limits:
               memory: "1Gi"
           env:
+            - name: TZ
+              value: {{ .Values.timezone }}
             - name: INFLUXDB_IP
               value: "influxdb2-{{ .Release.Name }}"
             - name: INFLUXDB_PORT
