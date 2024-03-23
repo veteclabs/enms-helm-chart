@@ -12,7 +12,7 @@ scada:
     topic: data
 timezone: Asia/Seoul
 persistentVolume:
-  path: /Users/Kimtaejun/helmCharts/volumes
+  path: /run/desktop/mnt/host/d
   enabled: true
   name: enms-volume
   storageClass: manual
@@ -20,7 +20,7 @@ persistentVolume:
   accessModes:
   - ReadWriteOnce
   reclaimPolicy: Retain
-  nodeName: platek8s-master-node
+  nodeName: docker-desktop
 ingress-nginx:
   enabled: false
   host: ""
@@ -31,9 +31,9 @@ ingress-nginx:
       loadBalancerIP: 10.4.0.5
       externalTrafficPolicy: Local
       ports:
-        http: 800
-        https: 4433
-  type: ClusterIP
+        http: 3723
+        https: 443
+  type: LoadBalancer
 image:
   repository: nginx
   pullPolicy: IfNotPresent
@@ -81,9 +81,9 @@ influxdb2:
   enabled: false
   ip: ''
   adminUser:
-    organization: ''
-    bucket: ''
-    user: ''
+    organization: 'primary'
+    bucket: 'history'
+    user: 'admin'
     password: ''
     token: ''
   service:
