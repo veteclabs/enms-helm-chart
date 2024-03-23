@@ -44,34 +44,34 @@ image:
   tlsSecret: ''
 frontend:
   imageName: vetec/enms-frontend
-  tag: 0ebaa521
+  tag: '0ebaa521'
   port: 3722
   targetPort: 3722
 timeseriesApi:
   enabled: true
   inamgeName: vetec/timeseries-api
-  tag: 0ebaa521
+  tag: '0ebaa521'
   imageName: vetec/enms-timeseries-api
   port: 8089
   targetPort: 8089
   replicas: 1
 timeseriesSaver:
   enabled: true
-  tag: 0ebaa521
+  tag: '0ebaa521'
   imageName: vetec/enms-timeseries-saver
   port: 8084
   targetPort: 8084
   replicas: 1
 timeseriesScheduler:
   enabled: true
-  tag: .inf
+  tag: '0ebaa521'
   imageName: vetec/enms-timeseries-scheduler
   port: 8084
   targetPort: 8084
   replicas: 1
 frameApi:
   enabled: true
-  tag: c7de4b30
+  tag: 'c7de4b30'
   imageName: vetec/enms-frame-api
   port: 8038
   targetPort: 8038
