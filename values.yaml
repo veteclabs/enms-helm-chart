@@ -109,9 +109,6 @@ mariadb:
     rootPassword: vetec3721!
     database: ems
   primary:
-    extraFlags:
-      - name: TZ
-        value: Asia/Seoul
     service:
       type: ClusterIP
     persistence:
