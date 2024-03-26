@@ -62,4 +62,14 @@ spec:
               value: "{{ ternary 6379 (printf "%s" (.Values.redis.port))  .Values.redis.enabled }}"
             - name: REDIS_PASSWORD
               value: "{{ .Values.redis.auth.password }}"
+            - name: DB_HOSTNAME
+              value: "{{ ternary (printf "%s-mariadb" (.Release.Name)) .Values.redis.ip  .Values.mariadb.enabled }}"
+            - name: DB_NAME
+              value: "ems"
+            - name: DB_PORT
+              value: "{{ ternary 3306 .Values.mariadb.port  .Values.mariadb.enabled }}"
+            - name: DB_USERNAME
+              value: root
+            - name: DB_PASSWORD
+              value: "{{ .Values.mariadb.auth.rootPassword }}"
 {{- end}}
