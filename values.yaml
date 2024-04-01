@@ -46,7 +46,7 @@ image:
 frontend:
   replicas: 1
   imageName: vetec/enms-frontend
-  tag: fa78328c
+  tag: c093ce77
   port: 3722
   targetPort: 3722
 timeseriesApi:
