@@ -73,7 +73,7 @@ timeseriesScheduler:
   replicas: 1
 frameApi:
   enabled: true
-  tag: d3207dc8
+  tag: 9558bd6e
   imageName: vetec/enms-frame-api
   port: 8038
   targetPort: 8038
