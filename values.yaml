@@ -46,7 +46,7 @@ image:
 frontend:
   replicas: 1
   imageName: vetec/enms-frontend
-  tag: c093ce77
+  tag: fcdcd005
   port: 3722
   targetPort: 3722
 timeseriesApi:
@@ -59,7 +59,7 @@ timeseriesApi:
   replicas: 1
 timeseriesSaver:
   enabled: true
-  tag: 6df9b477
+  tag: fcdcd005
   imageName: vetec/enms-timeseries-saver
   port: 8084
   targetPort: 8084
@@ -73,7 +73,7 @@ timeseriesScheduler:
   replicas: 1
 frameApi:
   enabled: true
-  tag: 9739a525
+  tag: fcdcd005
   imageName: vetec/enms-frame-api
   port: 8038
   targetPort: 8038
