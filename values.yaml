@@ -31,7 +31,7 @@ ingress-nginx:
       loadBalancerIP: 10.4.0.5
       externalTrafficPolicy: Local
       ports:
-        http: 3723
+        http: 3722
         https: 443
   type: LoadBalancer
 image:
