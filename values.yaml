@@ -59,7 +59,7 @@ timeseriesApi:
   replicas: 1
 timeseriesSaver:
   enabled: true
-  tag: cfb8127d
+  tag: d4e635cd
   imageName: vetec/enms-timeseries-saver
   port: 8084
   targetPort: 8084
