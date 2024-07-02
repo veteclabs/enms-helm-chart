@@ -1,4 +1,8 @@
 replicaCount: 1
+
+global:
+  storageClass: manual
+
 scada:
   ip: 127.0.0.1
   projectName: enms
@@ -102,27 +106,13 @@ mariadb:
   enabled: true
   capacity: 1Gi
   port: 3721
-  volumePermissions:
-    enabled: true
   auth:
     rootPassword: vetec3721!
     database: ems
-  primary:
-    service:
-      type: ClusterIP
-    persistence:
-      enabled: true
-      existingClaim: mariadb-pvc
-      storageClass: local-storage
-      type: pvc
-      accessModes:
-      - ReadWriteOnce
-      subPath: mariadb
+
 redis:
   ip: 127.0.0.1
   enabled: true
-  volumePermissions:
-    enabled: true
   port: '6378'
   auth:
     enabled: true
@@ -133,15 +123,6 @@ redis:
     type: NodePort
     nodePorts:
       redis: 32379
-  master:
-    persistence:
-      enabled: true
-      existingClaim: redis-pvc
-      storageClass: local-storage
-      type: pvc
-      accessModes:
-      - ReadWriteOnce
-      subPath: redis
     service:
       type: ClusterIP
       ports:
